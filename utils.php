@@ -93,7 +93,7 @@ final class Utils {
 	  		echo( self::$clase .' / escapar_comillas()' );
 	  
 	  		if ( is_string( $cadena ) )
-	  			return str_replace( array( "'", '"' ), array( '\'', '\"' ), $cadena );
+	  			return str_replace( array( "'", '"' ), array( "\'", '\"' ), $cadena );
 
 	  		return FALSE;
 		}
