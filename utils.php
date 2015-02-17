@@ -23,21 +23,6 @@ final class Utils {
 
 	/*** Métodos públicos de la clase ***/
 
-		/**
-		 * Devuelve un string a partir del array dado
-		 * @param array $array
-		 * @param string $separador
-		 * @return string
-		 */
-		public static function array_to_string( $array=NULL, $separador=' ' ) {
-			echo( self::$clase .' / array_to_string()' );
-
-			//Array pasado con contenido (array vacio no se evalua)
-			if ( $array && is_array( $array ) )
-				return implode( $separador, $array );
-			  
-			return FALSE;
-		}
 
 		/**
 		 * Devuelve la parte inicial de un texto con una longitud máx. en palabras o letras (no trunca palabras)
@@ -121,6 +106,45 @@ final class Utils {
 			return FALSE;
 		}
 
+        /**
+         * Devuelve un string formado a partir de un array
+         * @param  array  $array
+         * @param  string $separador
+         * @return string
+         */
+        public static function get_array_to_string($array=NULL, $separador=NULL) {
+            echo(self::$clase .' / get_array_to_string()');
+
+            //Array pasado con contenido (array vacio no se evalua)
+            if ($array && is_array($array)) {
+                if ($separador)
+                    return implode($separador, $array);
+
+                return implode(' ', $array);
+            }
+
+            return FALSE;
+        }
+
+        /**
+         * Convierte un string en un array
+         * @param  String $cadena ---> String dado
+         * @param  String $x      ---> caracter de corte
+         * @return Array
+         */
+        public static function get_string_to_array($cadena=NULL, $x=NULL) {
+            echo(self::$clase .' / get_string_to_array()');
+            
+            if (is_string($cadena)) {
+                if ($x)
+                    return explode($x, $cadena);
+
+                return explode(' ', $cadena);
+            }
+                
+            return FALSE;
+        }
+
 		/**
 		 * Convierte un array en un string para INSERTs
 		 * @param  array    $datos         
@@ -198,23 +222,6 @@ final class Utils {
 
 			if ( is_string( $cadena ) )
 				return str_replace( ' ', $caracter_sustitucion, $cadena );
-
-			return FALSE;
-		}
-
-
-
-		/**
-		 * Convierte un string en un array
-		 * @param String $cadena ---> String dado
-		 * @param String $x  ---> caracter de corte
-		 * @return Array
-		 */
-		public static function string_to_array( $cadena=NULL, $x=' ' ) {
-			echo( self::$clase .' / string_to_array()' );
-	  
-			if (is_string( $cadena))
-			return explode( $x, $cadena );
 
 			return FALSE;
 		}
