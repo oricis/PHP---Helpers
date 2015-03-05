@@ -1,9 +1,9 @@
 <?php
 
 //Se requiere el fichero con las clases Gato y Vaca para las pruebas
-require 'clases.php';
+require '../vars/clases.php';
 //Se requiere el fichero con el método que se usa para ordenar objetos
-require '../utils.php';
+require '../../utils.php';
 
 
 

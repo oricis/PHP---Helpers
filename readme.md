@@ -8,3 +8,19 @@ Forma de organizar las clases.
 Helpers disponibles:
 	- Utils.
 		Agrupa mÃ©todos para varios propÃ³sitos, bÃ¡sicamente, para trabajo con strings.
+
+Test
+Los test se situan en el directorio test/
+Los test de los métodos de cada clase se encuentran dentro de un subdirectorio nombrado como test_nombre_clase/ p.e. test_utils/ 
+Otros ficheros requeridos para ejecutar los test se encuentran en el subdirectorio vars/
+La estructura quedaría así:
+
+repo/
+	ficheros.php
+	utils.php
+	test/
+		test_ficheros/
+		test_utils/
+			test_ordenar_objetos.php
+	vars/
+		clases.php
