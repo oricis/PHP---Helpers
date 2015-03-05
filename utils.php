@@ -90,7 +90,7 @@ final class Utils {
 		 * @return String
 		 */
 		public static function escapar_comillas( $cadena=NULL ) {
-	  		echo( self::$clase .' / escapar_comillas()' );
+	  		echo( self::$clase .' / escapar_comillas() <br>' );
 	  
 	  		if ( is_string( $cadena ) )
 	  			return str_replace( array( "'", '"' ), array( "\'", '\"' ), $cadena );
@@ -98,7 +98,7 @@ final class Utils {
 	  		return FALSE;
 		}
 		public static function escapar_comillas_2( $cadena=NULL ) {
-			echo( self::$clase .' / escapar_comillas_2()' );
+			echo( self::$clase .' / escapar_comillas_2() <br>' );
 
 			if ( is_string( $cadena ) )
 				return filter_var( $cadena, FILTER_SANITIZE_MAGIC_QUOTES );
@@ -151,7 +151,7 @@ final class Utils {
 		 * @return string -> Formato "'uno', 'dos', 'tres'"
 		 */
 		public static function get_valores( $array_datos=NULL ) {
-			echo( self::$clase .' / get_valores()' );        
+			echo( self::$clase .' / get_valores() <br>' );        
 			//dev( $array_datos ); //die( );
 			if ( $array_datos ) {
 				$lon = count( $array_datos );
@@ -182,12 +182,50 @@ final class Utils {
 		}
 
 		/**
+		 * Ordena un array de objetos segun el valor de una propiedad
+		 * @param  array   $array_de_objetos
+		 * @param  string  $propiedad_a_considerar -> propiedad por la que se requiere llevar a cabo el ordenamiento
+		 * @param  boolean $orden_ascendente       -> Orden ascendente x defecto, pasar FALSE para invertir
+		 * @return array -> array de objetos ordenados
+		 */
+		public static function ordena_objetos( $array_de_objetos=NULL, 
+											   $propiedad_a_considerar=NULL, 
+											   $orden_ascendente=TRUE ) {
+			echo( self::$clase .' / ordena_objetos() <br>' );
+			
+			if ( $array_de_objetos && $propiedad_a_considerar 
+				&& is_array( $array_de_objetos ) && is_string( $propiedad_a_considerar ) ) {
+
+				$a_ordenar = array();
+			    $resultado = array();
+
+			    //Se recogen en un nuevo array los valores de la propiedad a considerar en el ordenamiento 
+			    foreach ( $array_de_objetos as $i => $objeto ) {
+			        $a_ordenar[$i] = $objeto->$propiedad_a_considerar;
+			    }
+			    //Se ordena el array creado en orden ascendente
+			    asort( $a_ordenar );
+
+			    //Se emplean los índices del array ordenado para extraer los objetos del 
+			    //array original en el orden necesario guardándolos en un nuevo array
+			    foreach ( $a_ordenar as $i => $valor ) {
+			        $resultado[] = $array_de_objetos[$i];
+			    }
+
+			    //Se devuelve el array con los objetos ordenados, invirtiendo el orden si así se requiere
+			    return ( $orden_ascendente ) ? $resultado : array_reverse( $resultado );
+			}
+
+			return FALSE;
+		}
+
+		/**
 		 * Cambia acentos de una cadena por sus letras sin acentuar
 		 * @param String $cadena ---> String dado
 		 * @return String
 		 */
 		public static function quitar_acentos( $cadena=NULL ) {
-	  		echo( self::$clase .' / quitar_acentos()' );
+	  		echo( self::$clase .' / quitar_acentos() <br>' );
 
 	  		if (is_string( $cadena))
 	  			return str_replace( array('Á','É','Í','Ó','Ú','á','é','í','ó','ú'),
@@ -203,7 +241,7 @@ final class Utils {
 		 * @return String
 		 */
 		public static function quitar_enies( $cadena=NULL ) {
-			echo( self::$clase .' / quitar_enies()' );
+			echo( self::$clase .' / quitar_enies() <br>' );
 
 			if ( is_string( $cadena ) )
 				return str_replace( array('Ñ','ñ'), array('N','n'), $cadena );
@@ -218,7 +256,7 @@ final class Utils {
 	 	 * @return String
 		 */
 		public static function quitar_espacios( $cadena=NULL, $caracter_sustitucion='_' ) {
-			echo( self::$clase .' / quitar_espacios()' );
+			echo( self::$clase .' / quitar_espacios() <br>' );
 
 			if ( is_string( $cadena ) )
 				return str_replace( ' ', $caracter_sustitucion, $cadena );
@@ -232,7 +270,7 @@ final class Utils {
 		 * @return String
 		 */
 		public static function to_lower( $abc=NULL ) {
-			echo( self::$clase .' / to_lower()' );
+			echo( self::$clase .' / to_lower() <br>' );
 
 			if ( is_null( $abc ) )
 				return FALSE;
@@ -248,7 +286,7 @@ final class Utils {
 		 * @return String
 		 */
 		public static function to_upper( $abc=NULL ) {
-			echo( self::$clase .' / to_upper()' );
+			echo( self::$clase .' / to_upper() <br>' );
 
 			if ( is_null( $abc ) )
 				return FALSE;
